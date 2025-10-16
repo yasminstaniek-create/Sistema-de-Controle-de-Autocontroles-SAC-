@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SCA v9.0 - Gestão Multi-Cliente</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h1>SCA v9.0</h1>
+        <div class="client-selector-container">
+            <label for="clientSelector">CLIENTE ATIVO</label>
+            <select id="clientSelector"></select>
+        </div>
+        <nav>
+            <ul>
+                <li data-page="dashboard" class="active">Dashboard</li>
+                <li data-page="cadastro">Cadastro Geral</li>
+                <li data-page="auditoria">Controle de Auditoria</li>
+                <li data-page="verificadas">Verificadas</li>
+                <li data-page="clientes">Clientes</li>
+                <li data-page="relatorios">Relatórios</li>
+                <li data-page="configuracoes">Configurações</li>
+            </ul>
+        </nav>
+        <div class="sidebar-footer">Gestão Multi-Cliente</div>
+    </aside>
+
+    <main class="main-content">
+        <div id="no-client-overlay">
+            <h2>Nenhum cliente selecionado</h2>
+            <p>Por favor, selecione um cliente na barra lateral ou adicione um novo na seção "Clientes".</p>
+        </div>
+
+        <div id="app-content">
+            <!-- PÁGINA DASHBOARD -->
+            <section id="dashboard" class="page active">
+                <div class="page-header"><h2>Dashboard</h2></div>
+                <div class="summary-cards">
+                    <div class="card ok"><h3>Em Dia</h3><span id="count-ok" class="count">0</span></div>
+                    <div class="card pending"><h3>Pendentes</h3><span id="count-pending" class="count">0</span></div>
+                    <div class="card overdue"><h3>Atrasadas</h3><span id="count-overdue" class="count">0</span></div>
+                </div>
+                <div class="container">
+                    <h2>Lembretes e Pendências</h2>
+                    <ul id="reminders-list"></ul>
+                </div>
+            </section>
+
+            <!-- PÁGINA CADASTRO GERAL -->
+            <section id="cadastro" class="page">
+                <div class="page-header">
+                    <h2>Cadastro Geral de Planilhas</h2>
+                    <button id="addPlanilhaBtn" class="btn">Adicionar Nova Planilha</button>
+                </div>
+                <div class="container" id="cadastro-geral-container"></div>
+            </section>
+            
+            <!-- PÁGINA CONTROLE DE AUDITORIA -->
+            <section id="auditoria" class="page">
+                <div class="page-header"><h2>Controle de Auditoria</h2></div>
+                <div class="tabs">
+                    <div class="tab active" data-tab="diarias">Diárias</div>
+                    <div class="tab" data-tab="semanais">Semanais</div>
+                    <div class="tab" data-tab="mensais">Mensais</div>
+                    <div class="tab" data-tab="outras">Outras</div>
+                    <div class="tab" data-tab="fisico">Arquivamento Físico</div>
+                </div>
+                <div class="container">
+                    <div id="tab-diarias" class="tab-content active"></div>
+                    <div id="tab-semanais" class="tab-content"></div>
+                    <div id="tab-mensais" class="tab-content"></div>
+                    <div id="tab-outras" class="tab-content"></div>
+                    <div id="tab-fisico" class="tab-content"></div>
+                </div>
+            </section>
+            
+            <!-- PÁGINA VERIFICADAS -->
+            <section id="verificadas" class="page">
+                <div class="page-header"><h2>Histórico de Verificadas</h2></div>
+                <div class="container">
+                    <div class="filters">
+                        <label for="filterVerifiedDate">Filtrar por Data:</label>
+                        <input type="date" id="filterVerifiedDate">
+                        <label for="filterVerifiedFreq">Filtrar por Periodicidade:</label>
+                        <select id="filterVerifiedFreq">
+                            <option value="todas">Todas</option>
+                            <option value="Diária">Diária</option>
+                            <option value="Semanal">Semanal</option>
+                            <option value="Mensal">Mensal</option>
+                            <option value="Outra">Outra</option>
+                        </select>
+                    </div>
+                    <div id="verified-list-container"></div>
+                </div>
+            </section>
+
+            <!-- PÁGINA CLIENTES -->
+            <section id="clientes" class="page">
+                <div class="page-header">
+                    <h2>Gerenciar Clientes</h2>
+                    <button id="addClientBtn" class="btn">Adicionar Novo Cliente</button>
+                </div>
+                <div class="container" id="client-list-container"></div>
+            </section>
+
+            <!-- PÁGINA RELATÓRIOS -->
+            <section id="relatorios" class="page">
+                <div class="page-header"><h2>Relatórios</h2></div>
+                <div class="container">
+                    <h3>Exportar Dados do Cliente Ativo</h3>
+                    <p>Exporte a lista completa de planilhas e seus status atuais para um arquivo CSV.</p>
+                    <button id="exportCsvBtn" class="btn">Exportar para CSV</button>
+                </div>
+            </section>
+
+            <!-- PÁGINA CONFIGURAÇÕES -->
+            <section id="configuracoes" class="page">
+                <div class="page-header"><h2>Configurações</h2></div>
+                <div class="container">
+                    <h3>Gerenciamento de Dados</h3>
+                    <p>Atenção: esta ação é irreversível e irá apagar todos os dados do sistema.</p>
+                    <button id="clearDataBtn" class="btn btn-danger">Limpar Todos os Dados</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="planilhaModal" class="modal"><div class="modal-content"><span class="close-button">&times;</span><h2 id="planilhaModalTitle"></h2><form id="planilhaForm"><input type="hidden" id="planilhaId"><div class="form-group"><label for="codigo">Código</label><input type="text" id="codigo" required></div><div class="form-group"><label for="descricao">Descrição</label><input type="text" id="descricao" required></div><div class="form-grid"><div class="form-group"><label for="frequencia">Frequência</label><select id="frequencia" required><option value="Diária">Diária</option><option value="Semanal">Semanal</option><option value="Mensal">Mensal</option><option value="Outra">Outra</option></select></div><div class="form-group"><label for="arquivamento">Tipo de Arquivamento</label><select id="arquivamento" required><option value="Qualysys">Qualysys (Digital)</option><option value="Físico">Físico</option></select></div></div><div class="form-group"><label for="monitor">Monitor(a) Responsável</label><input type="text" id="monitor"></div><button type="submit" class="btn">Salvar</button></form></div></div>
+    <div id="pendencyModal" class="modal"><div class="modal-content"><span class="close-button">&times;</span><h2>Registrar Pendência</h2><form id="pendencyForm"><input type="hidden" id="pendencyPlanilhaId"><p><strong>Planilha:</strong> <span id="pendencyPlanilhaDesc"></span></p><div class="form-group"><label for="pendencyType">Tipo de Pendência</label><select id="pendencyType" required><option value="anotacao">Anotação (Lembrete)</option><option value="nao_houve">Não houve o procedimento</option></select></div><div class="form-group"><label for="pendencyJustification">Justificativa / Anotação</label><textarea id="pendencyJustification" rows="3" required></textarea></div><button type="submit" class="btn">Registrar Pendência</button></form></div></div>
+    <div id="reminderModal" class="modal"><div class="modal-content"><span class="close-button">&times;</span><h2>Adicionar Lembrete com Prazo</h2><form id="reminderForm"><input type="hidden" id="reminderPlanilhaId"><p><strong>Planilha:</strong> <span id="reminderPlanilhaDesc"></span></p><div class="form-group"><label for="reminderText">Descrição da Ação</label><textarea id="reminderText" rows="3" required></textarea></div><div class="form-group"><label for="reminderPrazo">Prazo Final</label><input type="date" id="reminderPrazo" required></div><button type="submit" class="btn">Salvar Lembrete</button></form></div></div>
+    <div id="clientModal" class="modal"><div class="modal-content"><span class="close-button">&times;</span><h2 id="clientModalTitle"></h2><form id="clientForm"><input type="hidden" id="clientId"><div class="form-group"><label for="clientName">Nome do Cliente</label><input type="text" id="clientName" required></div><button type="submit" class="btn">Salvar Cliente</button></form></div></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
