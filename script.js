@@ -18,28 +18,79 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     
     const seedData = [
-        { codigo: 'PPHO 5.01', descricao: 'PPHO pré OPERACIONAL ABATE', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: 'Ana' },
-        { codigo: 'HIG 6.01', descricao: 'CHECK LIST HIGIENE PESSOAL', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: 'Carlos' },
-        { codigo: '1.03 MAN', descricao: 'MANUTENÇÃO PREV DOS EQ. SEMANAL', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: 'Ana' },
-        { codigo: '1.01 MAN', descricao: 'Check list de manutenção das instalações', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: 'Mariana' },
-        { codigo: 'TEMP 9.02', descricao: 'CONTROLE DE EXPEDIÇÃO', frequencia: 'Outra', arquivamento: 'Físico', monitor: 'João' }
+        { codigo: '1.01 MAN', descricao: 'Check list de manutenção das instalações e equipamentos', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '1.02 MAN', descricao: 'ORDEM DE SERVIÇO', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '1.03 MAN', descricao: 'MANUTENÇÃO PREV DOS EQ. SEMANAL', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '1.04 MAN', descricao: 'MANUTENÇÃO PREV DOS EQ MENSAL', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '1.05 MAN', descricao: 'MANUTENÇÃO CORRETIVA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '1.06 MAN', descricao: 'MANUTENÇÃO DOS CURRAIS', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'AB 2.01', descricao: 'ANÁLISE DE CLORO', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'AB 2.02', descricao: 'INSPEÇÃO DO RESERVATÓRIO DE ÁGUA', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'AB 2.03', descricao: 'CONTROLE REPOSIÇÃO DE CLORO', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'AR 3.01', descricao: 'CHECK LIST ÁGUA RESIDUAL', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'CIP 4.01', descricao: 'CHECK LIST CONTROLE DE PRAGAS', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'CIP 4.02', descricao: 'CONTROLE DE OCORRÊNCIA DE PRAGAS', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'CIP 4.03', descricao: 'CHECK LIST EMPRESA TERCEIRIZADA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.01', descricao: 'PPHO pré OPERACIONAL ABATE', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.01.1', descricao: 'PPHO PRE OPERACIONAL DESOSSA', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.02', descricao: 'CHECK LIST DE PPHO OPERACIONAL ABATE', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.02.1', descricao: 'PPHO OPERACIONAL DESOSSA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.03', descricao: 'CONTROLE DE USO DE SANITIZANTES', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.04', descricao: 'USO DE DETERGENTE ACIDY', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.05', descricao: 'CONTROLE DE LIMPEZA DOS EVAPORADORES', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.06', descricao: 'CONTROLE DE LIMPEZA DAS CAMARAS FRIAS', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PPHO 5.07', descricao: 'CONTROLE DE LIMPEZA CARRETILHAS', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'HIG 6.01', descricao: 'CHECK LIST HIGIENE PESSOAL', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PSO 7.01', descricao: 'PSO ABATE', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'PSO 7.02', descricao: 'PSO DESOSSA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '08.01', descricao: 'RECEBIMENTO DE ANIMAIS ABATEDOURO', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '08.02', descricao: 'CONTROLE DE RECEBIMENTO DE MATÉRIA-PRIMA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '08.03', descricao: 'Controle de recebimento de embalagens e rótulos', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '08.04', descricao: 'Condições de armazenamento de embalagens', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '08.05', descricao: 'Controle de recebimento de PRODUTOS QUIMICOS', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'TEMP 9.01', descricao: 'CONTROLE DE TEMPERATURAS', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'TEMP 9.02', descricao: 'CONTROLE DE EXPEDIÇÃO', frequencia: 'Outra', arquivamento: 'Físico', monitor: '' },
+        { codigo: 'AF 10.01', descricao: 'AFERIÇÃO DOS TERMÔMETROS', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'BEA 12.01', descricao: 'BEM ESTAR ANIMAL', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'BEA 12.02', descricao: 'AVALIAÇÃO DO TRANSPORTE DE ANIMAIS', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'BEA 12.03', descricao: 'POST MORTEM', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'BEA 12.04', descricao: 'FICHA DE TRANSPORTE DOS ANIMAIS', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'RECALL 13.03', descricao: 'RASTREABILIDADE', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'TRE 14.01', descricao: 'TREINAMENTO FUNCIONÁRIOS', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'TRE 14.02', descricao: 'PROVA BPF', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'VENT 15.01', descricao: 'MONITORAMENTO VENTILAÇÃO', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'VENT 15.02', descricao: 'CHECK LIST VENTILAÇÃO E EXAUSTÃO', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'ILU 16.01', descricao: 'MEDIÇÃO DOS LUXS', frequencia: 'Mensal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'ILU 16.02', descricao: 'CONTROLE DE FUNCIONAMENTO DAS LAMPADAS', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'MER 17.01', descricao: 'RETIRADO MER', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'CF 18.01', descricao: 'CONTROLE DE PESO LÍQUIDO', frequencia: 'Semanal', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: 'CF 18.02', descricao: 'CONTROLE DE FORMULAÇÃO CARNE MOIDA', frequencia: 'Outra', arquivamento: 'Qualysys', monitor: '' },
+        { codigo: '19.01', descricao: 'PCC1 LAVAGEM DE CARCAÇA', frequencia: 'Diária', arquivamento: 'Qualysys', monitor: '' },
     ];
 
     function initializeData() {
         clients = JSON.parse(localStorage.getItem(`${APP_PREFIX}_clients`)) || [];
         currentClientId = localStorage.getItem(`${APP_PREFIX}_currentClientId`);
 
+        if (clients.length === 0) {
+            const modelClientId = Date.now();
+            clients.push({ id: modelClientId, name: 'Frigorífico Gallas (Modelo)' });
+            saveClients();
+            currentClientId = modelClientId;
+            localStorage.setItem(`${APP_PREFIX}_currentClientId`, currentClientId);
+        }
+
         populateClientSelector();
 
         if (currentClientId && clients.some(c => c.id == currentClientId)) {
             loadClientData(currentClientId);
-            document.getElementById('app-content').style.display = 'block';
-            document.getElementById('no-client-overlay').style.display = 'none';
-        } else {
-            document.getElementById('app-content').style.display = 'none';
-            document.getElementById('no-client-overlay').style.display = 'block';
         }
-        renderAll();
+        
+        let initialPage = 'dashboard';
+        if (!currentClientId) {
+            initialPage = 'clientes';
+        }
+        changePage(initialPage, true);
     }
     
     function loadClientData(clientId) {
@@ -50,12 +101,36 @@ document.addEventListener('DOMContentLoaded', function() {
         if (storedPlanilhas) {
             planilhas = JSON.parse(storedPlanilhas);
         } else {
-            // Se é a primeira vez que carrega dados para este cliente, usa o seed.
             planilhas = seedData.map((p, index) => ({
                 ...p, id: Date.now() + index,
                 ultimaVerificacao: null, pendencia: null
             }));
+            
+            const yesterday = new Date();
+            yesterday.setDate(yesterday.getDate() - 1);
+            const yesterdayStr = yesterday.toISOString().split('T')[0];
+            
+            let dailyToVerify = planilhas.find(p => p.codigo === 'PPHO 5.01');
+            if(dailyToVerify) dailyToVerify.ultimaVerificacao = yesterdayStr;
+
+            let weeklyToVerify = planilhas.find(p => p.codigo === '1.03 MAN');
+            if(weeklyToVerify) weeklyToVerify.ultimaVerificacao = '2025-10-10';
+
+            let monthlyToVerify = planilhas.find(p => p.codigo === '1.01 MAN');
+            if(monthlyToVerify) {
+                monthlyToVerify.pendencia = { tipo: 'anotacao', texto: 'Verificar se a calibração do termômetro X foi feita.' };
+            }
+            
             savePlanilhas();
+
+            lembretes.push({
+                id: Date.now(),
+                planilhaId: weeklyToVerify.id,
+                texto: 'Trocar filtro de ar da Câmara Fria 02.',
+                prazo: '2025-10-25',
+                concluido: false
+            });
+            saveLembretes();
         }
     }
 
@@ -148,11 +223,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- FUNÇÕES DE RENDERIZAÇÃO ---
     const renderAll = () => {
-        if (!currentClientId && window.location.hash !== '#clientes') {
+        if (!currentClientId) {
             document.getElementById('app-content').style.display = 'none';
             document.getElementById('no-client-overlay').style.display = 'block';
+            renderClients();
             return;
-        }
+        };
         document.getElementById('app-content').style.display = 'block';
         document.getElementById('no-client-overlay').style.display = 'none';
 
@@ -446,7 +522,7 @@ document.addEventListener('DOMContentLoaded', function() {
             planilhas[index].pendencia = null; 
             
             verificacoesConcluidas.push({
-                id: Date.now(),
+                id: Date.now() + Math.random(),
                 planilhaId: id,
                 dataVerificacao: hoje
             });
@@ -538,7 +614,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const index = clients.findIndex(c => c.id == id);
             clients[index].name = name;
         } else {
-            clients.push({ id: Date.now(), name: name });
+            const newId = Date.now();
+            clients.push({ id: newId, name: name });
+            if (!currentClientId) { // If it's the first client, auto-select it
+                localStorage.setItem(`${APP_PREFIX}_currentClientId`, newId);
+                location.reload();
+            }
         }
         saveClients();
         closeModal();
@@ -578,12 +659,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabs = document.querySelectorAll('.tab');
     const tabContents = document.querySelectorAll('.tab-content');
 
-    const changePage = (pageId) => {
+    const changePage = (pageId, forceRender = false) => {
         pages.forEach(p => p.classList.remove('active'));
         navLinks.forEach(l => l.classList.remove('active'));
         document.getElementById(pageId).classList.add('active');
         document.querySelector(`li[data-page="${pageId}"]`).classList.add('active');
-        if(currentClientId || pageId === 'clientes') {
+        if(currentClientId || pageId === 'clientes' || forceRender) {
              renderAll();
         }
     };
@@ -604,6 +685,10 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('filterVerifiedFreq').addEventListener('change', renderVerificadas);
 
     document.getElementById('exportCsvBtn').addEventListener('click', () => {
+        if (!currentClientId) {
+            alert('Por favor, selecione um cliente primeiro.');
+            return;
+        }
         let csvContent = "data:text/csv;charset=utf-8,Status,Codigo,Descricao,Frequencia,Arquivamento,Monitor,UltimaVerificacao\n";
         planilhas.forEach(p => {
             const status = getStatus(p).text;
@@ -627,6 +712,5 @@ document.addEventListener('DOMContentLoaded', function() {
     // --- INICIALIZAÇÃO ---
     initializeData();
 });
-</script>
-</body>
-</html>
+
+
